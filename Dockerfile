@@ -6,6 +6,9 @@ FROM ubuntu:18.04
 
 MAINTAINER Amazon AI <sage-learner@amazon.com>
 
+# RUN sudo python3 -m pip install -U pip
+# RUN sudo python3 -m pip install -U setuptools
+
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
          wget \
@@ -45,7 +48,10 @@ RUN ln -s /usr/bin/pip3 /usr/bin/pip
 ##        (cd /usr/local/lib/python3.6/dist-packages/scipy/.libs; rm *; ln ../../numpy/.libs/* .) && \
 ##        rm -rf /root/.cache
 
-RUN pip  install --default-timeout=1000 boto3~=1.17.58 pillow~=8.1.2 torch~=1.8.0 torchvision~=0.9.0 argparse~=1.4.0 pandas~=1.1.5 thop~=0.0.31-2005241907 tqdm~=4.59.0 numpy~=1.19.5 opencv-python~=4.5.1.48 matplotlib~=3.3.4 s3fs~=2021.4.0 scipy~=1.5.4
+RUN pip3 install --upgrade setuptools
+RUN pip3 install --upgrade pip
+
+RUN pip3  install --default-timeout=1000 boto3~=1.17.58 pillow~=8.1.2 torch~=1.8.0 torchvision~=0.9.0 argparse~=1.4.0 pandas~=1.1.5 thop~=0.0.31-2005241907 tqdm~=4.59.0 numpy~=1.19.5 opencv-python~=4.5.1.48 matplotlib~=3.3.4 s3fs~=2021.4.0 scipy~=1.5.4
 # --no-cache-dir
 # Set some environment variables. PYTHONUNBUFFERED keeps Python from buffering our standard
 # output stream, which means that logs can be delivered to the user quickly. PYTHONDONTWRITEBYTECODE
